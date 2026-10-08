@@ -254,9 +254,9 @@ func (s *EventsService) Create(ctx context.Context, params CreateParams) (map[st
 	if key == "" {
 		key = newUUID()
 	}
-	attributes := params.Attributes
-	if attributes == nil {
-		attributes = map[string]any{}
+	attributes, err := s.resolveVenue(ctx, params.Attributes)
+	if err != nil {
+		return nil, err
 	}
 	body := map[string]any{
 		"data": map[string]any{

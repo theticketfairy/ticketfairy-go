@@ -9,7 +9,7 @@ import (
 )
 
 // Version is this module's version, sent in the User-Agent header.
-const Version = "0.1.0"
+const Version = "0.1.1"
 
 const (
 	// PublicBaseURL is the consumer site, which serves the public event listing.
