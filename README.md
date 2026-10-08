@@ -177,3 +177,9 @@ The developer guide is at [ticketfairy.com/developers](https://www.ticketfairy.c
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
+
+### Event venues
+
+When you supply a physical `venue` to `Events.Create`, the library resolves its `googlePlaceId` or its name and address through the authenticated Places API before saving. Resolved address fields and map coordinates replace supplied location fields; other venue settings are preserved. Your input map is unchanged.
+
+If several places match, the returned `*ticketfairy.Error` has kind `ErrValidation`, code `VENUE_AMBIGUOUS`, and choices in `Body["candidates"]`. Set `venue.googlePlaceId` to the chosen `place_id` and retry. Failed resolution stops creation, including drafts. A draft may omit its venue, and `isOnlineEvent: true` skips physical venue resolution.
